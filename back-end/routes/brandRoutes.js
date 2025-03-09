@@ -1,12 +1,8 @@
-const express = require("express");
-const { registerBrand } = require("../controllers/brandController");
-const upload = require("../middleware/upload");
+import express from "express";
+import { registerBrand } from "../controllers/brandController.js";
 
 const router = express.Router();
 
-router.post("/register-brand", upload.fields([
-  { name: "businessLicense", maxCount: 1 },
-  { name: "taxId", maxCount: 1 },
-]), registerBrand);
+router.post("/register-brand", registerBrand);
 
-module.exports = router;
+export default router;

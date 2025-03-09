@@ -1,4 +1,4 @@
-import BrandRegistrationForm from "@/app/registration/BrandRegistration";
+import BrandRegistrationForm from "@/app/registration/BrandRegistrationForm";
 import React from "react";
 
 const RegisterBrand = () => {

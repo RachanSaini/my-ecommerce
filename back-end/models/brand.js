@@ -6,8 +6,6 @@ const brandSchema = new mongoose.Schema({
   password: { type: String, required: true },
   businessAddress: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  businessLicense: { type: String, required: true },
-  taxId: { type: String, required: true },
   agreeToTerms: { type: Boolean, required: true },
 });
 

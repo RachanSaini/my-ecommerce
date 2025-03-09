@@ -27,11 +27,12 @@ const Agreement = ({ formData, setFormData, prevStep, submitForm }: AgreementPro
             required
           />
           <span className="text-sm text-gray-700">
-            I agree to the terms and conditions of MyStore.
+            I agree to the terms and conditions of KindKloset.
+            We will contact on registered email for further registration process.
           </span>
         </label>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between text-black">
         <FormButton text="Back" onClick={prevStep} />
         <FormButton text="Submit" onClick={submitForm} />
       </div>

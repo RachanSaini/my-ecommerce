@@ -1,10 +1,13 @@
-const Brand = require("../models/brand");
+import Brand from "../models/brand.js";
 
 const registerBrand = async (req, res) => {
   try {
     const { brandName, email, password, businessAddress, phoneNumber, agreeToTerms } = req.body;
-    const businessLicense = req.files["businessLicense"][0].path;
-    const taxId = req.files["taxId"][0].path;
+
+    // Validate required fields
+    if (!brandName || !email || !password || !businessAddress || !phoneNumber || !agreeToTerms) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
     const newBrand = new Brand({
       brandName,
@@ -12,8 +15,6 @@ const registerBrand = async (req, res) => {
       password,
       businessAddress,
       phoneNumber,
-      businessLicense,
-      taxId,
       agreeToTerms,
     });
 
@@ -25,4 +26,4 @@ const registerBrand = async (req, res) => {
   }
 };
 
-module.exports = { registerBrand };
+export { registerBrand };

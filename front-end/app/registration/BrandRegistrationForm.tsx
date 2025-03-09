@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import BasicInfo from "./brandRegistrationCommon/BasicInfo";
 import BusinessDetails from "./brandRegistrationCommon/BusinessDetails";
-import UploadDocuments from "./brandRegistrationCommon/UploadDocuments";
 import Agreement from "./brandRegistrationCommon/Agreement";
 import api from "@/lib/api";
 
@@ -14,8 +13,6 @@ const BrandRegistrationForm = () => {
     password: "",
     businessAddress: "",
     phoneNumber: "",
-    businessLicense: undefined,
-    taxId: undefined,
     agreeToTerms: false,
   });
 
@@ -31,23 +28,10 @@ const BrandRegistrationForm = () => {
       formDataToSend.append("businessAddress", formData.businessAddress);
       formDataToSend.append("phoneNumber", formData.phoneNumber);
       formDataToSend.append("agreeToTerms", formData.agreeToTerms.toString());
-  
-      // Check if businessLicense is not null before appending
-      if (formData.businessLicense) {
-        formDataToSend.append("businessLicense", formData.businessLicense);
-      } else {
-        throw new Error("Business license file is required.");
-      }
-  
-      // Check if taxId is not null before appending
-      if (formData.taxId) {
-        formDataToSend.append("taxId", formData.taxId);
-      } else {
-        throw new Error("Tax ID file is required.");
-      }
+
   
       const response = await api.post("/register-brand", formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: { "Content-Type": "application/json" },
       });
   
       if (response.status === 201) {
@@ -68,9 +52,6 @@ const BrandRegistrationForm = () => {
         <BusinessDetails formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />
       )}
       {step === 3 && (
-        <UploadDocuments formData={formData} setFormData={setFormData} nextStep={nextStep} prevStep={prevStep} />
-      )}
-      {step === 4 && (
         <Agreement formData={formData} setFormData={setFormData} prevStep={prevStep} submitForm={submitForm} />
       )}
     </div>

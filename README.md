@@ -2,7 +2,7 @@
 Node.JS and MongoDB (using moongoose currently)
 
 ```bash
-npm i `
+npm i 
 ```
 
 run backend in dev:
