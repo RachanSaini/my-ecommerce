@@ -10,11 +10,13 @@ const addShop = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
+    const owner = req.owner._id;
     // Create a new shop
     const newShop = new Shop({
       name,
       description,
       location,
+      owner,
     });
 
     // Save the shop to the database

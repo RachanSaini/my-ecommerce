@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import Owner from "../models/owner.js"
 
-const authMiddleware = (req, res, next) => {
+const ownerAuthMiddleware = async (req, res, next) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
@@ -9,11 +10,17 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded.user;
+
+    const owner = await Owner.findById(decoded.ownerId);
+    if (!owner) {
+        return res.status(401).json( { message: "Owner not found" });
+    }
+    req.owner = owner;
+    
     next();
   } catch (error) {
     res.status(401).json({ message: "Token is not valid" });
   }
 };
 
-export default authMiddleware;
+export default ownerAuthMiddleware;

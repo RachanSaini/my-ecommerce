@@ -4,9 +4,10 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import brandRoutes from "./routes/brandRegistrationRoutes.js";
 import shopRoutes from './routes/shopRoutes.js';
+import ownerRoutes from './routes/ownerRoutes.js';
 
 
-// Load environment variables from .env file
+// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -22,6 +23,7 @@ connectDB();
 // Routes
 app.use("/api/shop-registration", brandRoutes);
 app.use("/api/shops", shopRoutes);
+app.use("/api/owners", ownerRoutes);
 
 app.get("/api/health", (req, res) => {
     res.status(200).json({ message: "Backend server is healthy and running!" });
