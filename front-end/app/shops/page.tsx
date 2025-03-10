@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import baseURL from '@/lib/api'
+import api from '@/lib/api';
 
 async function fetchShops() {
-  const res = await fetch(`${baseURL}/shops`);
-  if (!res.ok) {
+  const res = await api.get('/shops');
+  if (!res.data) {
     throw new Error('Failed to fetch shops');
   }
-  return res.json();
+  return res.data;
 }
 
 export default async function ShopsPage() {

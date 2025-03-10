@@ -1,4 +1,5 @@
 import Shop from "../models/shop.js";
+import Product from "../models/product.js"
 
 // Add a shop
 const addShop = async (req, res) => {
@@ -10,13 +11,18 @@ const addShop = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const owner = req.owner._id;
+    const ownerId = req.ownerId;
+    const owner = await Owner.findById(ownerId);
+    if (!owner) {
+      return res.status(404).json({ message: "Owner not found while adding new Shop" });
+    }
+
     // Create a new shop
     const newShop = new Shop({
       name,
       description,
       location,
-      owner,
+      owner: ownerId,
     });
 
     // Save the shop to the database
@@ -65,10 +71,23 @@ const addProductToShop = async (req, res) => {
     // Send success response
     res.status(201).json({ message: "Product added successfully!", product: newProduct });
   } catch (error) {
-    console.error("Error adding product:", error);
+    console.error("Error adding product to shop:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+//Get all products to a shop
+const getProductsByShop = async (req, res) => {
+    try {
+      const shopId = req.params.shopId;
+  
+      const products = await Product.find({ shop: shopId });
+      res.status(200).json({ products });
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  };
 
 // Get all shops
 const getAllShops = async (req, res) => {
@@ -99,4 +118,17 @@ const getShopById = async (req, res) => {
   }
 };
 
-export { addShop, addProductToShop, getAllShops, getShopById };
+// Get all shops for an owner
+const getShopsByOwner = async (req, res) => {
+    try {
+      const ownerId = req.ownerId;
+  
+      const shops = await Shop.find({ owner: ownerId });
+      res.status(200).json({ shops });
+    } catch (error) {
+      console.error("Error fetching shops:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+export { addShop, addProductToShop, getProductsByShop, getAllShops, getShopById, getShopsByOwner };
