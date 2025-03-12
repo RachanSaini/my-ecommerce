@@ -8,6 +8,7 @@ import {
   getShopsByOwner,
 } from "../controllers/shopController.js";
 import ownerAuthMiddleware from "../middleware/ownerAuthMiddleware.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ const router = express.Router();
 router.post("/", ownerAuthMiddleware, addShop);
 
 // Add a product to a shop
-router.post("/:shopID/products", ownerAuthMiddleware, addProductToShop);
+router.post("/:shopID/products", upload , addProductToShop);
 
 //Get all products to a shop
 router.get("/:shopID/products", getProductsByShop);

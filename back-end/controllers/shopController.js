@@ -53,23 +53,28 @@ const addProductToShop = async (req, res) => {
       return res.status(404).json({ message: "Shop not found" });
     }
 
-    // Create a new product
-    const newProduct = new Product({
-      name,
-      description,
-      price,
-      shop: shopID,
+    // Handle image upload
+    upload(req, res, async (err) => {
+      if (err) {
+        return res.status(400).json({ message: err });
+      }
+
+      // Create a new product
+      const newProduct = new Product({
+        name,
+        description,
+        price,
+        shop: shopID,
+        image: req.file ? req.file.path : null,
+      });
+
+      await newProduct.save();
+
+      shop.products.push(newProduct._id);
+      await shop.save();
+
+      res.status(201).json({ message: "Product added successfully!", product: newProduct });
     });
-
-    // Save the product to the database
-    await newProduct.save();
-
-    // Add the product to the shop's products array
-    shop.products.push(newProduct._id);
-    await shop.save();
-
-    // Send success response
-    res.status(201).json({ message: "Product added successfully!", product: newProduct });
   } catch (error) {
     console.error("Error adding product to shop:", error);
     res.status(500).json({ message: "Internal server error" });

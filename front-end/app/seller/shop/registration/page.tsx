@@ -4,7 +4,6 @@ import BasicInfo from "./shopRegistrationCommon/BasicInfo";
 import BusinessDetails from "./shopRegistrationCommon/BusinessDetails";
 import Agreement from "./shopRegistrationCommon/Agreement";
 import FormButton from "@/app/common/FormButton";
-import { registerOwner } from "@/lib/api";
 import { useRouter } from "next/navigation";
 
 const ShopRegistrationForm = () => {
@@ -35,10 +34,10 @@ const ShopRegistrationForm = () => {
     }
 
     try {
-      const response = await registerOwner(formData);
-      if (response.token) {
-        router.push("/dashboard");
-      }
+      //Add backend shop registration API logic
+      // Simulate shop registration logic
+      console.log("Shop registered:", formData);
+      router.push("/dashboard");
     } catch (error) {
       console.error("Registration failed:", error);
     }

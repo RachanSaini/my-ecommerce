@@ -73,7 +73,7 @@ export default function Navbar() {
           <Link href="/login" className="text-primary hover:text-secondary">
             Sign in
           </Link>
-          <Link href="/brand/registration" className="text-gray-800 hover:text-gray-600">
+          <Link href="seller/registration" className="text-gray-800 hover:text-gray-600">
             Join as Seller
           </Link>
         </div>
