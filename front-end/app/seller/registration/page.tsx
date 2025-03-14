@@ -60,7 +60,7 @@ const ShopRegistrationForm = () => {
       {step === 2 && <BusinessDetails formData={formData} setFormData={setFormData} />}
       {step === 3 && <Agreement agreed={agreed} setAgreed={setAgreed} />}
 
-      <div className="flex justify-between mt-6 bg-gray-500">
+      <div className="flex justify-between mt-6 ">
         {step > 1 && (
           <FormButton
             text="Previous"
@@ -79,7 +79,7 @@ const ShopRegistrationForm = () => {
           />
         )}
       </div>
-      <div className="flex justify-between mt-6 bg-gray-500">
+      <div className="flex justify-between mt-6 bg-gray-200">
         <p>Already have a seller account.</p>
         <button>
         <Link href="/seller/login">Login</Link>
