@@ -6,15 +6,10 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-color: #7A5C44;  /* Earthy Brown */
+  --secondary-color: #D3A87C;  /* Warm Beige */
+  --background-color: #F5F1E3;  /* Soft Cream */
+  --accent-color: #4D3625;  /* Deep Brown */
 }
 
 body {

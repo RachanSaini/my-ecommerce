@@ -1,7 +1,6 @@
-// import Link from 'next/link';
 import { SocialIcon } from 'react-social-icons'
 
-export default function Footer () {
+export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,6 +9,7 @@ export default function Footer () {
           <div className="col-span-2 md:col-span-4 lg:col-span-1">
             <h3 className="text-lg font-semibold mb-4">About KindKloset</h3>
             <ul className="space-y-2">
+              {/* You can add links here later */}
               {/* <li><Link href="/about"><a className="text-gray-400 hover:text-white">About Us</a></Link></li>
               <li><Link href="/careers"><a className="text-gray-400 hover:text-white">Careers</a></Link></li>
               <li><Link href="/press"><a className="text-gray-400 hover:text-white">Press</a></Link></li>
@@ -21,6 +21,7 @@ export default function Footer () {
           <div>
             <h3 className="text-lg font-semibold mb-4">Help</h3>
             <ul className="space-y-2">
+              {/* You can add links here later */}
               {/* <li><Link href="/help-center"><a className="text-gray-400 hover:text-white">Help Center</a></Link></li>
               <li><Link href="/privacy"><a className="text-gray-400 hover:text-white">Privacy Settings</a></Link></li>
               <li><Link href="/contact"><a className="text-gray-400 hover:text-white">Contact Us</a></Link></li> */}
@@ -31,6 +32,7 @@ export default function Footer () {
           <div>
             <h3 className="text-lg font-semibold mb-4">Policies</h3>
             <ul className="space-y-2">
+              {/* You can add links here later */}
               {/* <li><Link href="/privacy-policy"><a className="text-gray-400 hover:text-white">Privacy Policy</a></Link></li>
               <li><Link href="/terms"><a className="text-gray-400 hover:text-white">Terms of Use</a></Link></li>
               <li><Link href="/cookies"><a className="text-gray-400 hover:text-white">Cookies Policy</a></Link></li> */}
@@ -38,11 +40,10 @@ export default function Footer () {
           </div>
 
           {/* Social Media Section */}
-          <div>
-          <SocialIcon url="www.instagram.com" />
-          <SocialIcon url="www.facebook.com" />        
-          <SocialIcon url="www.pinterest.com" />        
-     
+          <div className="flex space-x-4">
+            <SocialIcon url="https://www.instagram.com" className="text-gray-400 hover:text-white" />
+            <SocialIcon url="https://www.facebook.com" className="text-gray-400 hover:text-white" />
+            <SocialIcon url="https://www.pinterest.com" className="text-gray-400 hover:text-white" />
           </div>
 
           {/* Newsletter Section */}
@@ -57,7 +58,7 @@ export default function Footer () {
               />
               <button
                 type="submit"
-                className="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700"
+                className="bg-indigo-600 px-4 py-2 rounded-r-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-400"
               >
                 Subscribe
               </button>
@@ -67,7 +68,7 @@ export default function Footer () {
 
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">&copy; {new Date().getFullYear()} KindKloset. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">&copy; {new Date().getFullYear()} KindKloset. All rights reserved.</p>
         </div>
       </div>
     </footer>
